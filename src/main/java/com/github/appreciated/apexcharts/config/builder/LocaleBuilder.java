@@ -1,11 +1,11 @@
 package com.github.appreciated.apexcharts.config.builder;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.appreciated.apexcharts.config.Locale;
 import com.github.appreciated.apexcharts.config.locale.Options;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class LocaleBuilder {
@@ -57,7 +57,7 @@ public class LocaleBuilder {
     	
     	try {
 			locale = mapper.readValue(f, Locale.class);
-		} catch (IOException e) {
+		} catch (JacksonException e) {
 			e.printStackTrace();
 		}
     	

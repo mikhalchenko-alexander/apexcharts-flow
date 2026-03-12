@@ -10,11 +10,9 @@ import com.github.appreciated.apexcharts.config.chart.zoom.ZoomType;
 import com.github.appreciated.apexcharts.config.xaxis.builder.LabelsBuilder;
 import com.github.appreciated.apexcharts.helper.IntFormatter;
 import com.github.appreciated.apexcharts.helper.Series;
-import com.vaadin.flow.router.Route;
 
 import java.math.BigDecimal;
 
-@Route("locale")
 public class IntFormatterExample extends ApexChartsBuilder {
 
     public IntFormatterExample() {

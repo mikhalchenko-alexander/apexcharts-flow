@@ -5,19 +5,19 @@
 
     <groupId>com.github.appreciated</groupId>
     <artifactId>apexcharts</artifactId>
-    <version>24.0.0</version>
+    <version>25.0.0</version>
     <name>ApexCharts.js</name>
-    <description>Integration of ApexCharts.js for the Vaadin platform 24</description>
+    <description>Integration of ApexCharts.js for the Vaadin platform 25</description>
 
     <properties>
-        <vaadin.version>24.3.2</vaadin.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.release>17</maven.compiler.release>
+        <vaadin.version>25.0.7</vaadin.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jetty.version>11.0.19</jetty.version>
-        <jandex-maven-plugin.version>1.2.3</jandex-maven-plugin.version>
+        <jandex-maven-plugin.version>3.5.3</jandex-maven-plugin.version>
     </properties>
     <organization>
         <name>appreciated</name>
@@ -109,9 +109,19 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-dev</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>3.1.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -120,7 +130,7 @@
         <plugins>
             <plugin>
                 <!-- https://github.com/wildfly/jandex-maven-plugin -->
-                <groupId>org.jboss.jandex</groupId>
+                <groupId>io.smallrye</groupId>
                 <artifactId>jandex-maven-plugin</artifactId>
                 <version>${jandex-maven-plugin.version}</version>
                 <executions>

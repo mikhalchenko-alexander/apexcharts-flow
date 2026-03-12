@@ -1,7 +1,6 @@
 package com.github.appreciated.apexcharts;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.appreciated.apexcharts.config.Annotations;
 import com.github.appreciated.apexcharts.config.Chart;
 import com.github.appreciated.apexcharts.config.DataLabels;
@@ -21,6 +20,7 @@ import com.github.appreciated.apexcharts.config.Tooltip;
 import com.github.appreciated.apexcharts.config.XAxis;
 import com.github.appreciated.apexcharts.config.YAxis;
 import com.github.appreciated.apexcharts.helper.Series;
+import tools.jackson.databind.ObjectMapper;
 
 public class ApexChartsBuilder {
 
