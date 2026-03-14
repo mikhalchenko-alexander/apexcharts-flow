@@ -1,8 +1,6 @@
 package com.github.appreciated.apexcharts;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.appreciated.apexcharts.config.*;
 import com.github.appreciated.apexcharts.helper.Series;
 import com.vaadin.flow.component.HasSize;
@@ -14,6 +12,9 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.page.PendingJavaScriptResult;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Tag("apex-charts-wrapper")
-@NpmPackage(value = "apexcharts", version = "3.49.0")
+@NpmPackage(value = "apexcharts", version = "3.54.1")
 @NpmPackage(value = "onecolor", version = "4.1.0")
 @JsModule("./com/github/appreciated/apexcharts/apexcharts-wrapper.ts")
 @CssImport(value = "./com/github/appreciated/apexcharts/apexcharts-wrapper-styles.css", id = "apex-charts-style")
@@ -32,7 +33,12 @@ public class ApexCharts extends LitTemplate implements HasSize, HasStyle, HasThe
     private final ObjectMapper objectMapper;
 
     public ApexCharts() {
-        this(new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL));
+        this(JsonMapper.builder()
+                .changeDefaultPropertyInclusion(incl ->
+                        incl
+                                .withContentInclusion(JsonInclude.Include.NON_NULL)
+                                .withValueInclusion(JsonInclude.Include.NON_NULL)
+                ).build());
     }
 
     /**
@@ -50,7 +56,7 @@ public class ApexCharts extends LitTemplate implements HasSize, HasStyle, HasThe
     private void setPropertyObject(final String property, final Object value) {
         try {
             getElement().setProperty(property, objectMapper.writeValueAsString(value));
-        } catch (JsonProcessingException ex) {
+        } catch (JacksonException ex) {
             LOG.log(Level.SEVERE, String.format("Error mapping [%s] to json: %s", property, ex.getMessage()), ex);
         }
     }
@@ -261,7 +267,7 @@ public class ApexCharts extends LitTemplate implements HasSize, HasStyle, HasThe
      * Method to resets all toggled series and bring back the chart to its original state.
      *
      * @param shouldUpdateChart after resetting the series, the chart data should update and return to it’s original series
-     * @param shouldResetZoom if the user has zoomed in when this method is called, the zoom level should also reset.
+     * @param shouldResetZoom   if the user has zoomed in when this method is called, the zoom level should also reset.
      */
     public void resetSeries(Boolean shouldUpdateChart, Boolean shouldResetZoom) {
         getElement().callJsFunction("resetSeries", shouldUpdateChart, shouldResetZoom);

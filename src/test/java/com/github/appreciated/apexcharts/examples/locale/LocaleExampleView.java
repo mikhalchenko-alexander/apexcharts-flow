@@ -8,9 +8,7 @@ import com.github.appreciated.apexcharts.config.builder.ResponsiveBuilder;
 import com.github.appreciated.apexcharts.config.chart.Type;
 import com.github.appreciated.apexcharts.config.legend.Position;
 import com.github.appreciated.apexcharts.config.responsive.builder.OptionsBuilder;
-import com.vaadin.flow.router.Route;
 
-@Route("locale")
 public class LocaleExampleView extends ApexChartsBuilder {
 
     public LocaleExampleView() {
