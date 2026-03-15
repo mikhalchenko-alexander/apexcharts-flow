@@ -38,6 +38,7 @@ import com.github.appreciated.apexcharts.examples.timeline.TimeLineChartCustomCo
 import com.github.appreciated.apexcharts.examples.timeline.TimeLineChartExample;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 public class ExampleChartGenerator {
     public static ApexChartsBuilder[] getColoredCharts() {
@@ -58,6 +59,7 @@ public class ExampleChartGenerator {
     }
 
     public static ApexChartsBuilder[] getCharts() {
+        var group = UUID.randomUUID().toString();
         return Arrays.stream(new ApexChartsBuilder[]{
                 new PieChartExample(),
                 new DonutChartExample(),
@@ -88,8 +90,8 @@ public class ExampleChartGenerator {
                 new SuffixFormatterExample(),
                 new HeatmapChartExample(),
                 new RangedHeatmapChartExample(),
-                new SyncronisedLineChartExample1(),
-                new SyncronisedLineChartExample2()
+                new SyncronisedLineChartExample1(group),
+                new SyncronisedLineChartExample2(group)
         }).map(builder ->
                 builder.withTitle(TitleSubtitleBuilder.get().withText(builder.getClass().getSimpleName()).build())
         ).toArray(ApexChartsBuilder[]::new);

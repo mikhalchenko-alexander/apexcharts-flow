@@ -12,10 +12,10 @@ import com.github.appreciated.apexcharts.config.stroke.Curve;
 import com.github.appreciated.apexcharts.helper.Series;
 
 public class SyncronisedLineChartExample1 extends ApexChartsBuilder {
-	public SyncronisedLineChartExample1() {
+	public SyncronisedLineChartExample1(String group) {
 		withChart(ChartBuilder.get()
-			.withGroup("test1")
-			.withId("test1")
+			.withGroup(group)
+			.withId(group + "-test1")
 			.withType(Type.LINE)
 			.withZoom(ZoomBuilder.get()
 				.withEnabled(false)
