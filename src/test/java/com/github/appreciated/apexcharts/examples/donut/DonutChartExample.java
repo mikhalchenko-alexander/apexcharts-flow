@@ -17,6 +17,7 @@ public class DonutChartExample extends ApexChartsBuilder {
                 .withSeries(44.0, 55.0, 41.0, 17.0, 15.0)
                 .withResponsive(ResponsiveBuilder.get()
                         .withBreakpoint(480.0)
+                        .withBreakpoint(9001.0)
                         .withOptions(OptionsBuilder.get()
                                 .withLegend(LegendBuilder.get()
                                         .withPosition(Position.BOTTOM)
