@@ -7,8 +7,11 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LocaleBuilder {
+    private static final Logger LOG = Logger.getLogger(LocaleBuilder.class.getName());
     String name;
     Options options;
 
@@ -58,7 +61,7 @@ public class LocaleBuilder {
     	try {
 			locale = mapper.readValue(f, Locale.class);
 		} catch (JacksonException e) {
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, String.format("Error mapping [%s] to json: %s", localeName, e.getMessage()), e);
 		}
     	
     	return locale;

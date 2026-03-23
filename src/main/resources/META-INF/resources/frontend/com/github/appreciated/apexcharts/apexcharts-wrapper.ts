@@ -1,10 +1,10 @@
-import { html, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import {html, LitElement} from 'lit';
+import {customElement} from 'lit/decorators.js';
 // @ts-ignore
 import ApexCharts from 'apexcharts/dist/apexcharts.esm';
 import '@webcomponents/shadycss/apply-shim.min.js';
 import color from "onecolor";
-import { PropertyValues } from "@lit/reactive-element/development/reactive-element";
+import {PropertyValues} from "@lit/reactive-element/development/reactive-element";
 
 declare global {
     interface Window {
@@ -143,8 +143,13 @@ export class ApexChartsWrapper extends LitElement {
             await this.chartComponent.render();
         } catch (e) {
             console.error("An exception occurred during the rendering of the chart with the following configuration:");
-            console.error(this.config);
-            console.error(e);
+            console.error(JSON.stringify(this.config));
+            if (typeof e === "string") {
+                console.error(e);
+            } else if (e instanceof Error) {
+                console.error(e.message);
+                console.error(e.stack);
+            }
         }
     }
 
